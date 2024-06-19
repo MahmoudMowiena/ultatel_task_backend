@@ -14,8 +14,8 @@ export class Student {
     @Column({ unique: true })
     email: string;
 
-    @Column({ type: 'int', nullable: true })
-    age: number;
+    @Column({ type: 'date' })
+    birthDate: Date;
 
     @Column({ type: 'enum', enum: ['Male', 'Female'], default: 'Male' })
     gender: 'Male' | 'Female';

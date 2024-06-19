@@ -12,8 +12,7 @@ export class CreateStudentDto {
     @IsNotEmpty()
     email: string;
 
-    @IsNumber()
-    age: number;
+    birthDate: Date;
 
     @IsString()
     @IsIn(['Male', 'Female'])

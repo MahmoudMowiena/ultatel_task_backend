@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, 
 import { StudentService } from '../services/student.service';
 import { AuthGuard } from 'src/common/guards/auth.guard';
 import { CreateStudentDto } from '../dtos/createStudent.dto';
-import { UpdateStudentDto } from '../dtos/updateStudent.dto';
+import { StudentDto } from '../dtos/student.dto';
 
 @UseGuards(AuthGuard)
 @Controller('students')
@@ -22,7 +22,7 @@ export class StudentController {
 
     @HttpCode(HttpStatus.OK)
     @Put()
-    update(@Body() updatedStudent: UpdateStudentDto) {
+    update(@Body() updatedStudent: StudentDto) {
         return this.studentService.update(updatedStudent);
     }
 
@@ -36,13 +36,29 @@ export class StudentController {
     async paginate(
         @Query('page') page: number = 1,
         @Query('limit') limit: number = 10,
+        @Query('name') name: string,
+        @Query('country') country: string,
+        @Query('gender') gender: string,
+        @Query('agefrom') ageFrom: string,
+        @Query('ageto') ageTo: string,
     ) {
-        const result = await this.studentService.findPaginated(page, limit);
+        const result = await this.studentService.findConditional(page, limit, name, country, gender, ageFrom, ageTo);
         return {
             data: result.data,
             currentPage: page,
             totalPages: Math.ceil(result.total / limit),
             totalItems: result.total,
         };
+    }
+
+    @HttpCode(HttpStatus.OK)
+    @Post('many')
+    createMany(@Body() newStudents: CreateStudentDto[]) {
+        let numberAdded = 0;
+        newStudents.forEach(student => {
+            this.studentService.add(student);
+            ++numberAdded;
+        })
+        return { StudentsAdded: numberAdded };
     }
 }

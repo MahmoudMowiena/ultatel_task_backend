@@ -1,10 +1,10 @@
 import { IsEmail, IsIn, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
-export class UpdateStudentDto {
+export class StudentDto {
 
     @IsNumber()
     id: number;
-    
+
     @IsString()
     firstName: string;
 
@@ -15,8 +15,7 @@ export class UpdateStudentDto {
     @IsNotEmpty()
     email: string;
 
-    @IsNumber()
-    age: number;
+    birthDate: Date;
 
     @IsString()
     @IsIn(['Male', 'Female'])
