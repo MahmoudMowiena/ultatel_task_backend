@@ -1,5 +1,4 @@
 import { IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
-import { MatchPasswords } from "src/common/decorators/match-passwords.decorators";
 
 export class RegisterUserDto {
     @IsEmail()
@@ -10,9 +9,7 @@ export class RegisterUserDto {
     @IsString()
     password: string;
 
-    @MatchPasswords('password', {
-        message: 'Password and confirm password do not match',
-    })
+    @IsString()
     confirmPassword: string;
 
     @IsString()

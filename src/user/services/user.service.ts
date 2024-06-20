@@ -4,8 +4,6 @@ import { RegisterUserDto } from 'src/common/dtos/registerUser.dto';
 import { User } from '../entities/user.entity';
 import { Repository } from 'typeorm';
 
-// This should be a real class/interface representing a user entity
-// export type User = any;
 
 @Injectable()
 export class UserService {
@@ -15,7 +13,8 @@ export class UserService {
       ) {}
 
     async findByEmail(email: string): Promise<User | undefined> {
-        return await this.userRepository.findOneBy({ email });
+        // return await this.userRepository.findOneBy({ email });
+        return await this.userRepository.findOne({ where: { email } });
     }
 
     async create(newUser: RegisterUserDto) {

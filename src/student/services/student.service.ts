@@ -19,12 +19,14 @@ export class StudentService {
         return returnedStudents;
     }
 
-    private async findById(id: number): Promise<Student | undefined> {
-        return await this.studentRepository.findOneBy({ id });
+    async findById(id: number): Promise<Student | undefined> {
+        // return await this.studentRepository.findOneBy({ id });
+        return await this.studentRepository.findOne({ where: { id } });
     }
 
-    private async findByEmail(email: string): Promise<Student | undefined> {
-        return await this.studentRepository.findOneBy({ email });
+    async findByEmail(email: string): Promise<Student | undefined> {
+        // return await this.studentRepository.findOneBy({ email });
+        return await this.studentRepository.findOne({ where: { email } });
     }
 
     async findPaginated(page: number, limit: number): Promise<{ data: Student[], total: number }> {
@@ -59,7 +61,7 @@ export class StudentService {
         return this.transformToStudentDto(deletedStudent);
     }
 
-    private transformToStudentDto(student: Student): StudentDto {
+    transformToStudentDto(student: Student): StudentDto {
         const studentDto = new StudentDto();
         studentDto.id = student.id;
         studentDto.firstName = student.firstName;
@@ -91,7 +93,7 @@ export class StudentService {
 
         if (country) {
             query.andWhere('LOWER(student.country) LIKE LOWER(:country)', { country: `${country}%` });
-        }        
+        }
 
         if (gender) {
             query.andWhere('student.gender = :gender', { gender });
@@ -99,11 +101,11 @@ export class StudentService {
 
         if (ageFrom) {
             query.andWhere('DATE_PART(\'year\', AGE(:today, student.birthDate)) >= :ageFrom', { today: new Date(), ageFrom });
-          }
-      
-          if (ageTo) {
+        }
+
+        if (ageTo) {
             query.andWhere('DATE_PART(\'year\', AGE(:today, student.birthDate)) <= :ageTo', { today: new Date(), ageTo });
-          }
+        }
 
         const [data, total] = await query
             .skip((page - 1) * limit)

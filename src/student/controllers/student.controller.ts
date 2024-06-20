@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { StudentService } from '../services/student.service';
-import { AuthGuard } from 'src/common/guards/auth.guard';
+import { AuthGuard } from '../../common/guards/auth.guard';
 import { CreateStudentDto } from '../dtos/createStudent.dto';
 import { StudentDto } from '../dtos/student.dto';
 
