@@ -241,28 +241,6 @@ src/
     }
     ```
 
-- **POST /students/many:** Add multiple students
-  - Request Body: 
-    ```json
-    [
-      { 
-        "firstName": "John", 
-        "lastName": "Doe", 
-        "email": "john@example.com", 
-        "birthDate": "1990-01-01", 
-        "gender": "Male", 
-        "country": "Country" 
-      }, 
-      ...
-    ]
-    ```
-  - Response: 
-    ```json
-    { 
-      "StudentsAdded": 5 
-    }
-    ```
-
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](https://www.mit.edu/~amini/LICENSE.md) file for details.
