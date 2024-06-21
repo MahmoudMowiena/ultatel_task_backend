@@ -50,15 +50,4 @@ export class StudentController {
             totalItems: result.total,
         };
     }
-
-    @HttpCode(HttpStatus.OK)
-    @Post('many')
-    createMany(@Body() newStudents: CreateStudentDto[]) {
-        let numberAdded = 0;
-        newStudents.forEach(student => {
-            this.studentService.add(student);
-            ++numberAdded;
-        })
-        return { StudentsAdded: numberAdded };
-    }
 }
