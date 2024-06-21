@@ -20,12 +20,10 @@ export class StudentService {
     }
 
     async findById(id: number): Promise<Student | undefined> {
-        // return await this.studentRepository.findOneBy({ id });
         return await this.studentRepository.findOne({ where: { id } });
     }
 
     async findByEmail(email: string): Promise<Student | undefined> {
-        // return await this.studentRepository.findOneBy({ email });
         return await this.studentRepository.findOne({ where: { email } });
     }
 
@@ -84,6 +82,9 @@ export class StudentService {
         ageTo?: string
     ): Promise<{ data: Student[], total: number }> {
         const query = this.studentRepository.createQueryBuilder('student');
+
+        query.orderBy('LOWER(student.firstName)', 'ASC');
+        query.addOrderBy('LOWER(student.lastName)', 'ASC');
 
         if (name) {
             query.orWhere('LOWER(student.firstName) LIKE LOWER(:name)', { name: `${name}%` });
