@@ -12,12 +12,6 @@ import { DatabaseModule } from './database/database.module';
     StudentModule,
     DatabaseModule,
   ],
-  // controllers: [AppController],
-  // providers: [AppService, UserService, StudentService],
 })
 
 export class AppModule {}
-
-
-
-

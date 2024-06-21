@@ -9,12 +9,15 @@ export class RegisterUserDto {
     @IsString()
     password: string;
 
+    @IsNotEmpty()
     @IsString()
     confirmPassword: string;
 
+    @IsNotEmpty()
     @IsString()
     firstName: string;
 
+    @IsNotEmpty()
     @IsString()
     lastName: string;
 }
