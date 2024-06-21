@@ -16,6 +16,12 @@ The project uses a PostgreSQL database hosted on Supabase, managed through TypeO
 - [Endpoints](#endpoints)
 - [License](#license)
 
+## Deployment
+
+The application is deployed on Heroku. You can access the base URL here:
+
+- [Student Manager Backend Deployment](https://student-manager-backend-940f11b85bff.herokuapp.com)
+
 ## Installation
 
 1. **Clone the repository:**
