@@ -8,10 +8,6 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
     UserModule,
-    ConfigModule.forRoot({
-      isGlobal: true,
-      envFilePath: '.env',
-    }),
     JwtModule.register({
       global: true,
       secret: process.env.SECRET_KEY,
@@ -20,6 +16,5 @@ import { ConfigModule } from '@nestjs/config';
   ],
   providers: [AuthService],
   controllers: [AuthController],
-  exports: [AuthService],
 })
 export class AuthModule { }
